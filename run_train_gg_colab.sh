@@ -10,7 +10,7 @@ pip install -r requirements.txt
 cd /content/yolov9/data/data_tiktok_capcha
 
 # Giải nén file capcha.zip
-unzip capcha.zip
+unzip tiktok.v7i.yolov9.zip
 
 # Di chuyển trở lại thư mục chính
 cd /content/yolov9

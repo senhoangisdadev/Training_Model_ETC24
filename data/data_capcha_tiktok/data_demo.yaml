@@ -1,0 +1,61 @@
+train: data/data_tiktok_capcha/train/images
+val: data/data_tiktok_capcha/valid/images
+test: data/data_tiktok_capcha//test/images
+
+nc: 46
+names:
+  [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "A-hoa",
+    "E-hoa",
+    "F",
+    "G-hoa",
+    "H-hoa",
+    "M-hoa",
+    "R",
+    "R-hoa",
+    "Y",
+    "Y-hoa",
+    "a",
+    "b",
+    "c",
+    "cau",
+    "d",
+    "dagiac",
+    "e",
+    "g",
+    "g hoa",
+    "h",
+    "hop",
+    "k",
+    "l",
+    "m",
+    "n",
+    "non",
+    "p",
+    "q",
+    "s",
+    "t",
+    "t-hoa",
+    "tron",
+    "tru",
+    "u",
+    "v",
+    "w",
+    "x",
+    "z",
+  ]
+
+roboflow:
+  workspace: thi-trang
+  project: tiktok
+  version: 7
+  license: Public Domain
+  url: https://universe.roboflow.com/thi-trang/tiktok/dataset/7

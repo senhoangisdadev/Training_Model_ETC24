@@ -1,3 +1,4 @@
 1. Config run Minio && public to internet with ngrok
 2. Copy file dataset to data/tiktokdata
+5. Config lai file data.yaml import bat dau tu ./source
 5. Run run_train_gg_colab.sh at source

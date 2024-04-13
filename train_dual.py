@@ -44,7 +44,7 @@ from utils.loss_tal_dual import ComputeLoss
 #from utils.loss_tal_dual import ComputeLossLH as ComputeLoss
 #from utils.loss_tal_dual import ComputeLossLHCF as ComputeLoss
 from utils.metrics import fitness
-from utils.minio import put_model_to_minio
+from utils.minio_helper import put_model_to_minio
 from utils.plots import plot_evolve
 from utils.torch_utils import (EarlyStopping, ModelEMA, de_parallel,
                                select_device, smart_DDP, smart_optimizer,
@@ -395,13 +395,15 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
                 torch.save(ckpt, last)
                 if best_fitness == fi:
                     torch.save(ckpt, best)
+                    if epoch >= 30:
+                        put_model_to_minio(f'runs/train/{opt.name}/weights/epoch{epoch}.pt')  # Đẩy model lên Minio 
                 if opt.save_period > 0 and epoch % opt.save_period == 0:
                     torch.save(ckpt, w / f'epoch{epoch}.pt')
                 del ckpt
                 callbacks.run('on_model_save', last, epoch, final_epoch, best_fitness, fi)
                 
                 # Push model to Storage Object
-                put_model_to_minio()
+                put_model_to_minio(f'runs/train/{opt.name}/weights/best.pt')  # Truyền đường dẫn tệp lưu trữ vào hàm
         # EarlyStopping
         if RANK != -1:  # if DDP training
             broadcast_list = [stop if RANK == 0 else None]
