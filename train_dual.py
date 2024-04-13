@@ -402,8 +402,8 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
                 del ckpt
                 callbacks.run('on_model_save', last, epoch, final_epoch, best_fitness, fi)
                 
-                # Push model to Storage Object
-                put_model_to_minio(f'runs/train/{opt.name}/weights/best.pt')  # Truyền đường dẫn tệp lưu trữ vào hàm
+                # # Push model to Storage Object
+                # put_model_to_minio(f'runs/train/{opt.name}/weights/best.pt')  # Truyền đường dẫn tệp lưu trữ vào hàm
         # EarlyStopping
         if RANK != -1:  # if DDP training
             broadcast_list = [stop if RANK == 0 else None]
