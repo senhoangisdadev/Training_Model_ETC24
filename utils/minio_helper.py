@@ -1,6 +1,8 @@
 import os
+import shutil
 from xmlrpc.client import ResponseError
 
+from google.colab import drive
 from minio import Minio
 
 # Sử dụng hàm
@@ -47,3 +49,31 @@ def put_model_to_minio(model_path ,bucket_name='yolov9', object_name='models/mod
 
 # file = os.path.abspath('test.pt')
 # put_model_to_minio(file)
+
+
+def save_to_drive(file_path, drive_path):
+    """
+    Lưu file từ Colab vào Google Drive.
+
+    Parameters:
+        file_path (str): Đường dẫn đến file cần lưu.
+        drive_path (str): Đường dẫn trên Google Drive để lưu file.
+
+    Returns:
+        None
+    """
+    # Mount Google Drive
+    # drive.mount('/content/drive')
+
+    # Tạo thư mục nếu chưa tồn tại trên Google Drive
+    drive_folder = os.path.join('/content/drive/MyDrive', drive_path)
+    if not os.path.exists(drive_folder):
+        os.makedirs(drive_folder)
+
+    # Lưu file vào Google Drive
+    shutil.copy(file_path, drive_folder)
+
+    # Báo thành công
+    print(f"File đã được lưu vào {drive_folder}/{os.path.basename(file_path)}")
+    
+# from utils.minio_helper import put_model_to_minio, save_to_drive

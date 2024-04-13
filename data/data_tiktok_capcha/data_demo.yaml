@@ -1,6 +1,6 @@
 train: data/data_tiktok_capcha/train/images
 val: data/data_tiktok_capcha/valid/images
-test: data/data_tiktok_capcha//test/images
+test: data/data_tiktok_capcha/test/images
 
 nc: 46
 names:
